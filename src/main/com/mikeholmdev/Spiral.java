@@ -99,6 +99,7 @@ public class Spiral {
         for (String arg: args) {
             try {
                 int input = Integer.parseInt(arg);
+                if (input > 999) throw new UnsupportedOperationException();
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.append("\n");
                 stringBuilder.append("The spiral for your input value of ");
@@ -108,6 +109,8 @@ public class Spiral {
                 System.out.println(stringBuilder.toString());
             } catch (NumberFormatException e) {
                 System.err.println("Failed trying to parse a non-numeric argument, " + arg);
+            } catch (UnsupportedOperationException e) {
+                System.err.println("I'm sorry, but your input of " + arg + ", is greater than 999 and is unsupported at this time due to shortcomings in my formatting algorithm.");
             }
         }
     }

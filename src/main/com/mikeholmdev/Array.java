@@ -1,3 +1,5 @@
+package com.mikeholmdev;
+
 public class Array {
     public static String toString(int[][] a) {
         StringBuilder stringBuilder = new StringBuilder();

@@ -1,3 +1,5 @@
+package com.mikeholmdev;
+
 public class Spiral {
     private int width;
     private int center;
@@ -93,4 +95,20 @@ public class Spiral {
         }
     }
 
+    public static void main(String[] args) {
+        for (String arg: args) {
+            try {
+                int input = Integer.parseInt(arg);
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("\n");
+                stringBuilder.append("The spiral for your input value of ");
+                stringBuilder.append(input);
+                stringBuilder.append(" looks like this:\n\n");
+                stringBuilder.append(new Spiral(input).toString());
+                System.out.println(stringBuilder.toString());
+            } catch (NumberFormatException e) {
+                System.err.println("Failed trying to parse a non-numeric argument, " + arg);
+            }
+        }
+    }
 }

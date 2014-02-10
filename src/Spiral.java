@@ -1,30 +1,77 @@
 public class Spiral {
-    public static int[][] spiral(int in) {
-        final int include_zero = in + 1;
-        final int width = (int) Math.sqrt(include_zero);
-        final int levels = (int) Math.ceil(width/2.0);
+    private int width;
+    private int center;
+    private int[][] container;
+    private int counter;
 
-        int counter = 0;
-        int[][] container = new int[width][width];
-        for (int center = levels - 1, level = center; level >= 0; level--) {
-            for (int y = level + 1, bottom = width - 1 - level; y <= bottom; y++) {
-                int x = width - 1 - level;
-                container[y][x] = counter++;
-            }
-            for (int x = width - 2 - level, left = level; x >= left; x--) {
-                int y = width - 1 - level;
-                container[y][x] = counter++;
-            }
-            for (int y = width - 2 - level, top = level + 1; y >= top; y--) {
-                int x = level;
-                container[y][x] = counter++;
-            }
-            for (int x = level, right = width - 1 - level; x <= right; x++) {
-                int y = level;
-                container[y][x] = counter++;
-            }
-        }
+    public Spiral(int i) {
+        determineWidth(i);
+        findCenter();
+        fillContainer();
+    }
+
+    public String toString() {
+        return Array.toString(container);
+    }
+
+    public int[][] getArray() {
         return container;
+    }
+
+    private void determineWidth(int i) {
+        int include_zero = i + 1;
+        width = (int) Math.sqrt(include_zero);
+    }
+
+    private void findCenter() {
+        center = (int) Math.floor(width / 2.0);
+    }
+
+    private void fillContainer() {
+        container = new int[width][width];
+        counter = 0;
+        for (int level = center; level >= 0; level--) {
+            fillDown(level);
+            fillLeft(level);
+            fillUp(level);
+            fillRight(level);
+        }
+    }
+
+    private void fillDown(int level) {
+        int top = level + 1;
+        int bottom = width - 1 - level;
+        int x = width - 1 - level;
+        for (int y = top; y <= bottom; y++) {
+            container[y][x] = counter++;
+        }
+    }
+
+    private void fillLeft(int level) {
+        int right = width - 2 - level;
+        int left = level;
+        int y = width - 1 - level;
+        for (int x = right; x >= left; x--) {
+            container[y][x] = counter++;
+        }
+    }
+
+    private void fillUp(int level) {
+        int bottom = width - 2 - level;
+        int top = level + 1;
+        int x = level;
+        for (int y = bottom; y >= top; y--) {
+            container[y][x] = counter++;
+        }
+    }
+
+    private void fillRight(int level) {
+        int left = level;
+        int right = width - 1 - level;
+        int y = level;
+        for (int x = left; x <= right; x++) {
+            container[y][x] = counter++;
+        }
     }
 
 }

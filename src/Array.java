@@ -1,5 +1,5 @@
 public class Array {
-    public static String format(int[][] a) {
+    public static String toString(int[][] a) {
         StringBuilder stringBuilder = new StringBuilder();
         for (int y = 0, y_end = a.length; y < y_end; y++) {
             for (int x = 0, x_end = a[y].length; x < x_end; x++) {

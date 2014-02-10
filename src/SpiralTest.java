@@ -55,6 +55,12 @@ public class SpiralTest {
         verifyArrayEquals(expected, new Spiral(24).getArray());
     }
 
+    @Test
+    public void testNegative() {
+        int[][] expected = new int[0][0];
+        verifyArrayEquals(expected, new Spiral(-2).getArray());
+    }
+
     private void verifyArrayEquals(int[][] expected, int[][] actual) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Expected\n");

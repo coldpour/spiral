@@ -13,16 +13,17 @@ public class SpiralTest {
 
     @Test
     public void test1() {
-        int[][] expected = new int[1][2];
-        expected[0][0] = 0; expected[0][1] = 1;
+        int[][] expected = new int[2][2];
+        expected[0][0] = 0; expected[0][1] = 0;
+        expected[1][0] = 1; expected[1][1] = 0;
         verifyArrayEquals(expected, new Spiral(1).getArray());
     }
 
     @Test
     public void test2() {
         int[][] expected = new int[2][2];
-        expected[0][0] = 0; expected[0][1] = 1;
-        expected[1][0] = 0; expected[1][1] = 2;
+        expected[0][0] = 2; expected[0][1] = 0;
+        expected[1][0] = 1; expected[1][1] = 0;
         verifyArrayEquals(expected, new Spiral(2).getArray());
     }
 

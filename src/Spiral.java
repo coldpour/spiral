@@ -3,9 +3,11 @@ public class Spiral {
     private int center;
     private int[][] container;
     private int counter;
+    private int input;
 
-    public Spiral(int i) {
-        determineWidth(i);
+    public Spiral(int input) {
+        this.input = input;
+        determineWidth();
         findCenter();
         fillContainer();
     }
@@ -18,9 +20,20 @@ public class Spiral {
         return container;
     }
 
-    private void determineWidth(int i) {
-        int include_zero = i + 1;
-        width = (int) Math.sqrt(include_zero);
+    private void determineWidth() {
+        int include_zero = input + 1;
+        width = (int) Math.sqrt(findNextSquare(include_zero));
+    }
+
+    private int findNextSquare(int i) {
+        while (!isSquare(i)) {
+            i++;
+        }
+        return i;
+    }
+
+    private boolean isSquare(int i) {
+        return 0.0 == (Math.sqrt(i) % 1);
     }
 
     private void findCenter() {
@@ -43,7 +56,7 @@ public class Spiral {
         int bottom = width - 1 - level;
         int x = width - 1 - level;
         for (int y = top; y <= bottom; y++) {
-            container[y][x] = counter++;
+            fillAt(x, y);
         }
     }
 
@@ -52,7 +65,7 @@ public class Spiral {
         int left = level;
         int y = width - 1 - level;
         for (int x = right; x >= left; x--) {
-            container[y][x] = counter++;
+            fillAt(x, y);
         }
     }
 
@@ -61,7 +74,7 @@ public class Spiral {
         int top = level + 1;
         int x = level;
         for (int y = bottom; y >= top; y--) {
-            container[y][x] = counter++;
+            fillAt(x, y);
         }
     }
 
@@ -70,6 +83,12 @@ public class Spiral {
         int right = width - 1 - level;
         int y = level;
         for (int x = left; x <= right; x++) {
+            fillAt(x, y);
+        }
+    }
+
+    private void fillAt(int x, int y) {
+        if (counter <= input) {
             container[y][x] = counter++;
         }
     }
